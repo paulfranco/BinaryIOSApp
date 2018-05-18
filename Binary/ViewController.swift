@@ -23,7 +23,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         valueEntryTextField.attributedPlaceholder = placeholder
+        valueEntryTextField.addTarget(self, action: #selector(textFieldTextDidChange), for: .editingChanged)
+        disableBtns()
     }
+    
+    @objc func textFieldTextDidChange() {
+        if valueEntryTextField.text == "" {
+            disableBtns()
+        } else {
+            enableBtns()
+        }
+    }
+    
+    func disableBtns() {
+        binaryBtn.isEnabled = false
+        binaryBtn.alpha = 0.5
+        decimalBtn.isEnabled = false
+        decimalBtn.alpha = 0.5
+        
+    }
+    
+    func enableBtns() {
+        binaryBtn.isEnabled = true
+        binaryBtn.alpha = 1
+        decimalBtn.isEnabled = true
+        decimalBtn.alpha = 1    }
 
     @IBAction func binaryBtnWasPressed(_ sender: Any) {
     }
